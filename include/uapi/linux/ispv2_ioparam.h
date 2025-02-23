@@ -34,7 +34,8 @@ typedef uint64_t u64;
 #define AL6021_IOC_MAGIC 'Q'
 #define AL6021_PRIVATE    168
 
-#define AL6021_PREAMBLE_LEN		2 // words
+/* words */
+#define AL6021_PREAMBLE_LEN		2
 
 #define AL6021_OP_READ_MASK		0x10
 #define AL6021_OP_READ_MASK_n		0xef
