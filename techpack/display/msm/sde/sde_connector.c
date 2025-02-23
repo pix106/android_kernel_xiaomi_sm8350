@@ -1049,7 +1049,7 @@ void sde_connector_helper_bridge_disable(struct drm_connector *connector)
 void sde_connector_helper_bridge_enable(struct drm_connector *connector)
 {
 	struct sde_connector *c_conn = NULL;
-	struct dsi_display *display;
+	struct dsi_display *display = NULL;
 	struct sde_kms *sde_kms;
 
 	sde_kms = _sde_connector_get_kms(connector);
@@ -1076,7 +1076,8 @@ void sde_connector_helper_bridge_enable(struct drm_connector *connector)
 					MSM_ENC_TX_COMPLETE);
 	}
 
-	display->panel->bl_config.allow_bl_update = true;
+	if (display && display->panel)
+		display->panel->bl_config.allow_bl_update = true;
 
 	if (!sde_in_trusted_vm(sde_kms) && c_conn->bl_device) {
 		c_conn->bl_device->props.power = FB_BLANK_UNBLANK;
